@@ -11,7 +11,7 @@ def MAC_Überprüfer(clientinput):
     split_Ergebnis = str(clientinput).split(":")
 
     if len(split_Ergebnis) != 6:
-        print(f"Ihre Eingabe {clientinput} ist nicht gültig, da diese\n"
+        print("Ihre Eingabe ist nicht gültig, da diese\n"
               "aus weniger oder mehr als 6 Hexadezimalgruppen besteht.")
         return False
 
