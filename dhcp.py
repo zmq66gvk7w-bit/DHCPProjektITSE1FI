@@ -47,13 +47,13 @@ while ende == False:
         leasetime = heute + timedelta(days=7)
         IPListe = []
 
-    #chat start
+    #Chat start
     print("1 Neuen Eintrag erstellen")
     print("2 Programm beenden")
     print("3 Gib das ganze Netzwerk aus")
     auswahl = input("Geben Sie eine Auswahl ein: \n")
 
-    #neue IP Registrieren
+    #Neue IP registrieren
     if auswahl == "1":
 
         clientinput = input("Geben Sie Ihre Mac an: \n")
@@ -68,7 +68,7 @@ while ende == False:
             print("Ungültige MAC-Adresse. Bitte versuchen Sie es erneut.")
         
     
-    #Programm Beenden
+    #Programm beenden
     elif auswahl == "2":
         ende = True
 
