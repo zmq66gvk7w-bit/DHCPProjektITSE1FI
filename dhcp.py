@@ -58,7 +58,7 @@ while ende == False:
 
         clientinput = input("gib MAC: ")
 
-        if (MAC_Überprüfer(clientinput == True)):
+        if (MAC_Überprüfer(clientinput)== True):
             for items in IPListe:
                 hostAdresse += 1
             clientenEintrag = [netzIp + str(hostAdresse), clientinput]
