@@ -58,13 +58,15 @@ while ende == False:
 
         clientinput = input("gib MAC: ")
 
-        MAC_Überprüfer(clientinput)
-
-        for items in IPListe:
-            hostAdresse += 1
-        clientenEintrag = [netzIp + str(hostAdresse), clientinput]
-        IPListe.append(clientenEintrag)
-        print(f"Ihre Neue IP ist: {netzIp + str(hostAdresse)}")
+        if (MAC_Überprüfer(clientinput == True)):
+            for items in IPListe:
+                hostAdresse += 1
+            clientenEintrag = [netzIp + str(hostAdresse), clientinput]
+            IPListe.append(clientenEintrag)
+            print(f"Ihre Neue IP ist: {netzIp + str(hostAdresse)}")
+        else:
+            print("Ungültige MAC-Adresse. Bitte versuchen Sie es erneut.")
+        
 
     #Programm Beenden
     if auswahl == "2":
