@@ -8,7 +8,7 @@ def MAC_Überprüfer(clientinput):
         print("Bitte geben Sie etwas ein")
         return False
 
-    split_Ergebnis = clientinput.split(":")
+    split_Ergebnis = str(clientinput).split(":")
 
     if len(split_Ergebnis) != 6:
         print(f"Ihre Eingabe {clientinput} ist nicht gültig, da diese\n"
@@ -58,20 +58,22 @@ while ende == False:
 
         clientinput = input("Geben Sie Ihre Mac an: \n")
 
-        MAC_Überprüfer(clientinput)
-
-        for items in IPListe:
-            hostAdresse += 1
-        clientenEintrag = [netzIp + str(hostAdresse), clientinput]
-        IPListe.append(clientenEintrag)
-        print(f"Ihre neue IP ist: {netzIp + str(hostAdresse)}")
-
+        if (MAC_Überprüfer(clientinput == True)):
+            for items in IPListe:
+                hostAdresse += 1
+            clientenEintrag = [netzIp + str(hostAdresse), clientinput]
+            IPListe.append(clientenEintrag)
+            print(f"Ihre Neue IP ist: {netzIp + str(hostAdresse)}")
+        else:
+            print("Ungültige MAC-Adresse. Bitte versuchen Sie es erneut.")
+        
+    
     #Programm Beenden
-    if auswahl == "2":
+    elif auswahl == "2":
         ende = True
 
     #Ganze Netzwerkliste ausgeben
-    if auswahl == "3":
+    elif auswahl == "3":
         for item in IPListe:
             print(f"IP: {item[0]} MAC: {item[1]}")
     else:   
