@@ -1,6 +1,40 @@
 from datetime import date, timedelta
 heute = date.today()
 
+#Checkt MAC nach Gültigkeit
+def MAC_Überprüfer(clientinput):
+    
+    if clientinput == "":
+        print("Bitte geben Sie etwas ein")
+        return False
+
+    split_Ergebnis = clientinput.split(":")
+
+    if len(split_Ergebnis) != 6:
+        print(f"Ihre Eingabe {clientinput} ist nicht gültig, da diese\n"
+              "aus weniger oder mehr als 6 Hexadezimalgruppen besteht.")
+        return False
+
+    # Broadcastcheck
+    if all(group.upper() == "FF" for group in split_Ergebnis):
+        print("Broadcasts are not valid.")
+        return False
+
+    # Check each group
+    for group in split_Ergebnis:
+        if len(group) != 2:
+            print("Jede Gruppe muss genau 2 Zeichen haben.")
+            return False
+
+        for char in group:
+            if char.upper() not in "0123456789ABCDEF":
+                print("Ungültige Hexadezimalzeichen gefunden.")
+                return False
+
+    print("MAC-Adresse ist gültig.")
+    return True
+#Checkt MAC nach Gültigkeit
+
 leasetime = heute + timedelta(days=7)
 hostAdresse = 1
 netzIp= "192.168.1."
@@ -14,15 +48,18 @@ while ende == False:
         IPListe = []
 
     #chat start
-    print("1. Neuen eintrag Erstellen")
+    print("1 Neuen Eintrag erstellen")
     print("2 Programm beenden")
     print("3 Gib das ganze Netzwerk aus")
-    auswahl = input("Geben sie eine auswahl ein: ")
+    auswahl = input("Geben Sie eine Auswahl ein: ")
 
     #neue IP Registrieren
     if auswahl == "1":
-        #TODO INPUT CHECK FÜR MAC ADRESSE1
+
         clientinput = input("gib MAC: ")
+
+        MAC_Überprüfer(clientinput)
+
         for items in IPListe:
             hostAdresse += 1
         clientenEintrag = [netzIp + str(hostAdresse), clientinput]
@@ -39,6 +76,6 @@ while ende == False:
             print(f"IP: {item[0]} MAC: {item[1]}")
     else:   
         print()
-        print("Bitte geben sie eine gültige eingabe ein!")
+        print("Bitte geben Sie eine gültige Eingabe ein!")
     print()
-print("Programm Ende!")
+print("Programmende!")
