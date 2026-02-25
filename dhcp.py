@@ -20,7 +20,7 @@ def MAC_Überprüfer(clientinput):
         print("Broadcasts are not valid.")
         return False
 
-    # Check each group
+    # Hexadezimalcheck
     for group in split_Ergebnis:
         if len(group) != 2:
             print("Jede Gruppe muss genau 2 Zeichen haben.")
