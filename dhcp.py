@@ -17,7 +17,7 @@ def MAC_Überprüfer(clientinput):
 
     # Broadcastcheck
     if all(group.upper() == "FF" for group in split_Ergebnis):
-        print("Broadcasts are not valid.")
+        print("Broadcasts sind nicht erlaubt.")
         return False
 
     # Hexadezimalcheck
@@ -56,7 +56,7 @@ while ende == False:
     #neue IP Registrieren
     if auswahl == "1":
 
-        clientinput = input("gib MAC: ")
+        clientinput = input("Geben Sie Ihre Mac an: ")
 
         MAC_Überprüfer(clientinput)
 
@@ -64,7 +64,7 @@ while ende == False:
             hostAdresse += 1
         clientenEintrag = [netzIp + str(hostAdresse), clientinput]
         IPListe.append(clientenEintrag)
-        print(f"Ihre Neue IP ist: {netzIp + str(hostAdresse)}")
+        print(f"Ihre neue IP ist: {netzIp + str(hostAdresse)}")
 
     #Programm Beenden
     if auswahl == "2":
