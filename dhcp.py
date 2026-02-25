@@ -31,7 +31,7 @@ def MAC_Überprüfer(clientinput):
                 print("Ungültige Hexadezimalzeichen gefunden.")
                 return False
 
-    print("MAC-Adresse ist gültig.")
+    print("MAC-Adresse ist gültig.\n1")
     return True
 #Checkt MAC nach Gültigkeit
 
@@ -51,12 +51,12 @@ while ende == False:
     print("1 Neuen Eintrag erstellen")
     print("2 Programm beenden")
     print("3 Gib das ganze Netzwerk aus")
-    auswahl = input("Geben Sie eine Auswahl ein: ")
+    auswahl = input("Geben Sie eine Auswahl ein: \n")
 
     #neue IP Registrieren
     if auswahl == "1":
 
-        clientinput = input("Geben Sie Ihre Mac an: ")
+        clientinput = input("Geben Sie Ihre Mac an: \n")
 
         MAC_Überprüfer(clientinput)
 
