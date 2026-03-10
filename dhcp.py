@@ -55,17 +55,20 @@ while ende == False:
 
     #Neue IP registrieren
     if auswahl == "1":
-
-        clientinput = input("Geben Sie Ihre Mac an: \n")
-
-        if (MAC_Überprüfer(clientinput)== True):
-            for items in IPListe:
-                hostAdresse += 1
-            clientenEintrag = [netzIp + str(hostAdresse), clientinput]
-            IPListe.append(clientenEintrag)
-            print(f"Ihre Neue IP ist: {netzIp + str(hostAdresse)}")
+        if len(IPListe) == 254:
+            print("Keine freien IP-Adressen mehr verfügbar.")
         else:
-            print("Ungültige MAC-Adresse. Bitte versuchen Sie es erneut.")
+
+            clientinput = input("Geben Sie Ihre Mac an: \n")
+
+            if (MAC_Überprüfer(clientinput)== True):
+                for items in IPListe:
+                    hostAdresse += 1
+                clientenEintrag = [netzIp + str(hostAdresse), clientinput]
+                IPListe.append(clientenEintrag)
+                print(f"Ihre Neue IP ist: {netzIp + str(hostAdresse)}")
+            else:
+                print("Ungültige MAC-Adresse. Bitte versuchen Sie es erneut.")
         
     
     #Programm beenden
