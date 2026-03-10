@@ -1,6 +1,10 @@
 from datetime import date, timedelta
 heute = date.today()
 
+netzIp = "192.168.1."
+IPListe = []
+ende = False
+
 #Checkt MAC nach Gültigkeit
 def MAC_Überprüfer(clientinput):
     
@@ -40,9 +44,6 @@ def MAC_Überprüfer(clientinput):
 
 leasetime = heute + timedelta(days=7)
 hostAdresse = 1
-netzIp= "192.168.1."
-IPListe = []
-ende = False
 while ende == False:
     #IPliste leeren wenn lease time vorbei
     heute = date.today()
@@ -50,13 +51,21 @@ while ende == False:
         leasetime = heute + timedelta(days=7)
         IPListe = []
 
-    #Chat start
-    print("1 Neuen Eintrag erstellen")
-    print("2 Programm beenden")
-    print("3 Gib das ganze Netzwerk aus")
-    auswahl = input("Geben Sie eine Auswahl ein: \n")
+def MacDuplikat(clientinput):
+    for ip, mac in IPListe:
+        if mac == clientinput:
+            print(f"Client hat bereits IP {ip}")
+            return True
+    return False
+        
+#Chat start
+print("1 Neuen Eintrag erstellen")
+print("2 Programm beenden")
+print("3 Gib das ganze Netzwerk aus")
+auswahl = input("Geben Sie eine Auswahl ein: \n")
 
-    #Neue IP registrieren
+#Neue IP registrieren
+while ende == False:
     if auswahl == "1":
         if len(IPListe) == 254:
             print("Keine freien IP-Adressen mehr verfügbar.")
@@ -65,6 +74,8 @@ while ende == False:
             clientinput = input("Geben Sie Ihre Mac an: \n")
 
             if (MAC_Überprüfer(clientinput)== True):
+                if MacDuplikat(clientinput):
+                    continue
                 for items in IPListe:
                     hostAdresse += 1
                 clientenEintrag = [netzIp + str(hostAdresse), clientinput]
@@ -72,9 +83,9 @@ while ende == False:
                 print(f"Ihre Neue IP ist: {netzIp + str(hostAdresse)}")
             else:
                 print("Ungültige MAC-Adresse. Bitte versuchen Sie es erneut.")
-        
     
-    #Programm beenden
+
+#Programm beenden
     elif auswahl == "2":
         ende = True
 
@@ -86,4 +97,4 @@ while ende == False:
         print()
         print("Bitte geben Sie eine gültige Eingabe ein!")
     print()
-print("Programmende!")
+    print("Programmende!")
