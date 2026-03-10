@@ -41,7 +41,6 @@ def MAC_Überprüfer(clientinput):
     print("MAC-Adresse ist gültig.\n1")
     return True
 #Checkt MAC nach Gültigkeit
-
 leasetime = heute + timedelta(days=7)
 hostAdresse = 1
 while ende == False:
@@ -51,21 +50,20 @@ while ende == False:
         leasetime = heute + timedelta(days=7)
         IPListe = []
 
-def MacDuplikat(clientinput):
-    for ip, mac in IPListe:
-        if mac == clientinput:
-            print(f"Client hat bereits IP {ip}")
-            return True
-    return False
-        
-#Chat start
-print("1 Neuen Eintrag erstellen")
-print("2 Programm beenden")
-print("3 Gib das ganze Netzwerk aus")
-auswahl = input("Geben Sie eine Auswahl ein: \n")
+    def MacDuplikat(clientinput):
+        for ip, mac in IPListe:
+            if mac == clientinput:
+                print(f"Client hat bereits IP {ip}")
+                return True
+        return False
 
-#Neue IP registrieren
-while ende == False:
+    #Chat start
+    print("1 Neuen Eintrag erstellen")
+    print("2 Programm beenden")
+    print("3 Gib das ganze Netzwerk aus")
+    auswahl = input("Geben Sie eine Auswahl ein: \n")
+
+    #Neue IP registrieren
     if auswahl == "1":
         if len(IPListe) == 254:
             print("Keine freien IP-Adressen mehr verfügbar.")
@@ -83,9 +81,9 @@ while ende == False:
                 print(f"Ihre Neue IP ist: {netzIp + str(hostAdresse)}")
             else:
                 print("Ungültige MAC-Adresse. Bitte versuchen Sie es erneut.")
-    
+        
 
-#Programm beenden
+    #Programm beenden
     elif auswahl == "2":
         ende = True
 
