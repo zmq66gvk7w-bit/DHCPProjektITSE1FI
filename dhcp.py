@@ -86,6 +86,7 @@ while ende == False:
     #Programm beenden
     elif auswahl == "2":
         ende = True
+        print("Programmende!")
 
     #Ganze Netzwerkliste ausgeben
     elif auswahl == "3":
@@ -95,4 +96,3 @@ while ende == False:
         print()
         print("Bitte geben Sie eine gültige Eingabe ein!")
     print()
-    print("Programmende!")
