@@ -19,6 +19,9 @@ def MAC_Überprüfer(clientinput):
     if all(group.upper() == "FF" for group in split_Ergebnis):
         print("Broadcasts sind nicht erlaubt.")
         return False
+    elif all(group.upper() == "00" for group in split_Ergebnis):
+        print("Null-MAC-Adressen sind nicht erlaubt.")
+        return False
 
     # Hexadezimalcheck
     for group in split_Ergebnis:
