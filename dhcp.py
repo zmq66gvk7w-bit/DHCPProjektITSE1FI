@@ -11,16 +11,16 @@ def MAC_Überprüfer(clientinput):
     split_Ergebnis = str(clientinput).split(":")
 
     if len(split_Ergebnis) != 6:
-        print(f"Ihre Eingabe {clientinput} ist nicht gültig, da diese\n"
+        print("Ihre Eingabe ist nicht gültig, da diese\n"
               "aus weniger oder mehr als 6 Hexadezimalgruppen besteht.")
         return False
 
     # Broadcastcheck
     if all(group.upper() == "FF" for group in split_Ergebnis):
-        print("Broadcasts are not valid.")
+        print("Broadcasts sind nicht erlaubt.")
         return False
 
-    # Check each group
+    # Hexadezimalcheck
     for group in split_Ergebnis:
         if len(group) != 2:
             print("Jede Gruppe muss genau 2 Zeichen haben.")
@@ -31,7 +31,7 @@ def MAC_Überprüfer(clientinput):
                 print("Ungültige Hexadezimalzeichen gefunden.")
                 return False
 
-    print("MAC-Adresse ist gültig.")
+    print("MAC-Adresse ist gültig.\n1")
     return True
 #Checkt MAC nach Gültigkeit
 
@@ -47,28 +47,31 @@ while ende == False:
         leasetime = heute + timedelta(days=7)
         IPListe = []
 
-    #chat start
+    #Chat start
     print("1 Neuen Eintrag erstellen")
     print("2 Programm beenden")
     print("3 Gib das ganze Netzwerk aus")
-    auswahl = input("Geben Sie eine Auswahl ein: ")
+    auswahl = input("Geben Sie eine Auswahl ein: \n")
 
-    #neue IP Registrieren
+    #Neue IP registrieren
     if auswahl == "1":
-
-        clientinput = input("gib MAC: ")
-
-        if (MAC_Überprüfer(clientinput)== True):
-            for items in IPListe:
-                hostAdresse += 1
-            clientenEintrag = [netzIp + str(hostAdresse), clientinput]
-            IPListe.append(clientenEintrag)
-            print(f"Ihre Neue IP ist: {netzIp + str(hostAdresse)}")
+        if len(IPListe) == 254:
+            print("Keine freien IP-Adressen mehr verfügbar.")
         else:
-            print("Ungültige MAC-Adresse. Bitte versuchen Sie es erneut.")
+
+            clientinput = input("Geben Sie Ihre Mac an: \n")
+
+            if (MAC_Überprüfer(clientinput)== True):
+                for items in IPListe:
+                    hostAdresse += 1
+                clientenEintrag = [netzIp + str(hostAdresse), clientinput]
+                IPListe.append(clientenEintrag)
+                print(f"Ihre Neue IP ist: {netzIp + str(hostAdresse)}")
+            else:
+                print("Ungültige MAC-Adresse. Bitte versuchen Sie es erneut.")
         
     
-    #Programm Beenden
+    #Programm beenden
     elif auswahl == "2":
         ende = True
 
