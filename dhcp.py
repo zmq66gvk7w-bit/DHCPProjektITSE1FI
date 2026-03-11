@@ -41,17 +41,18 @@ def MAC_Überprüfer(clientinput):
     print("MAC-Adresse ist gültig.\n1")
     return True
 #Checkt MAC nach Gültigkeit
+
 leasetime = heute + timedelta(days=7)
 hostAdresse = 1
 while ende == False:
     #IPliste leeren wenn lease time vorbei
     heute = date.today()
-    if heute > leasetime:
-        leasetime = heute + timedelta(days=7)
-        IPListe = []
+    for i in IPListe:
+        if heute > i[2]:
+            IPListe.pop[i]
 
     def MacDuplikat(clientinput):
-        for ip, mac in IPListe:
+        for ip, mac, time in IPListe:
             if mac == clientinput:
                 print(f"Client hat bereits IP {ip}")
                 return True
@@ -74,11 +75,23 @@ while ende == False:
             if (MAC_Überprüfer(clientinput)== True):
                 if MacDuplikat(clientinput):
                     continue
-                for items in IPListe:
+                while True:
+                    ip_to_check = netzIp + str(hostAdresse)
+                    is_available = True
+                    for entry in IPListe:
+                        if entry[0] == ip_to_check:
+                            is_available = False
+                            break
+                    
+                    if is_available:
+                        clientenEintrag = [ip_to_check, clientinput, heute + timedelta(days=7)]
+                        IPListe.append(clientenEintrag)
+                        print(f"Ihre Neue IP ist: {ip_to_check}")
+                        break
                     hostAdresse += 1
-                clientenEintrag = [netzIp + str(hostAdresse), clientinput]
-                IPListe.append(clientenEintrag)
-                print(f"Ihre Neue IP ist: {netzIp + str(hostAdresse)}")
+                    if hostAdresse > 255:
+                        print("Keine freien IP-Adressen mehr verfügbar.")
+                        break
             else:
                 print("Ungültige MAC-Adresse. Bitte versuchen Sie es erneut.")
         
@@ -91,7 +104,7 @@ while ende == False:
     #Ganze Netzwerkliste ausgeben
     elif auswahl == "3":
         for item in IPListe:
-            print(f"IP: {item[0]} MAC: {item[1]}")
+            print(f"IP: {item[0]} MAC: {item[1]}" f" Lease Time: {item[2]}")
     else:   
         print()
         print("Bitte geben Sie eine gültige Eingabe ein!")
